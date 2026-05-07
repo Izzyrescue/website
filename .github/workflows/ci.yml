@@ -35,14 +35,9 @@ jobs:
             --no-progress
             --exclude-mail
             --exclude "^#$"
-            --exclude "cdn\.jsdelivr\.net"
-            --exclude "cdnjs\.cloudflare\.com"
-            --exclude "fonts\.googleapis\.com"
-            --exclude "fonts\.gstatic\.com"
-            --exclude "forms\.office\.com"
-            --exclude "google\.com/maps"
-            --exclude "zeffy\.com"
-            --exclude "petfinder\.com"
+            --exclude "^file:"
+            --exclude "htmlcodex\.com"
+            --accept "200..=299,403"
             "**/*.html"
           fail: true
 
