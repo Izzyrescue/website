@@ -4,5 +4,14 @@ IgnoreEmptyHref: true
 IgnoreEmptyAlt: true
 IgnoreInternalEmptyHash: true
 IgnoreDirectoryMissingTrailingSlash: true
+# Temporary allowlist: image files referenced from HTML that don't exist yet.
+# Tracked in https://github.com/izzyrescue/website/issues/2 — remove these
+# entries as the real assets land.
 IgnoreURLs:
   - "^#$"
+  - "^img/favicon\\.ico$"
+  - "^img/team-[1-4]\\.jpg$"
+  - "^img/testimonial-[1-3]\\.jpg$"
+  - "^img/icon-[1-3]\\.png$"
+  - "^img/about-1\\.jpg$"
+  - "^img/courses-[1-3]\\.jpg$"
