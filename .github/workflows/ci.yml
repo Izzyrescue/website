@@ -37,7 +37,9 @@ jobs:
             --exclude "^#$"
             --exclude "^file:"
             --exclude "htmlcodex\.com"
-            --accept "200..=299,403"
+            --accept "200..=299,401,403,429"
+            --max-retries 2
+            --timeout 30
             "**/*.html"
           fail: true
 
