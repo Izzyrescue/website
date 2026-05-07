@@ -2,3 +2,4 @@ img/Archive/
 /.vscode
 *.orig
 .DS_Store
+tmp/
