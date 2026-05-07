@@ -31,7 +31,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --exclude-mail --exclude "^#$" "**/*.html"
+          args: >-
+            --no-progress
+            --exclude-mail
+            --exclude "^#$"
+            --exclude "cdn\.jsdelivr\.net"
+            --exclude "cdnjs\.cloudflare\.com"
+            --exclude "fonts\.googleapis\.com"
+            --exclude "fonts\.gstatic\.com"
+            --exclude "forms\.office\.com"
+            --exclude "google\.com/maps"
+            --exclude "zeffy\.com"
+            --exclude "petfinder\.com"
+            "**/*.html"
           fail: true
 
   htmltest:
