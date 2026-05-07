@@ -1,0 +1,26 @@
+{
+  "defaults": {
+    "timeout": 30000,
+    "wait": 1000,
+    "standard": "WCAG2AA",
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox"]
+    },
+    "ignore": [
+      "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail",
+      "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId"
+    ]
+  },
+  "urls": [
+    "http://localhost:3000/",
+    "http://localhost:3000/about.html",
+    "http://localhost:3000/causes.html",
+    "http://localhost:3000/contact.html",
+    "http://localhost:3000/donate.html",
+    "http://localhost:3000/service.html",
+    "http://localhost:3000/team.html",
+    "http://localhost:3000/testimonial.html",
+    "http://localhost:3000/adopterApp.html"
+  ]
+}

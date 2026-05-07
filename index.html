@@ -48,10 +48,10 @@
             </div>
             <!-- <div class="col-lg-6 px-5 text-end">
                 <small>Follow us:</small>
-                <a class="text-white-50 ms-3" href=""><i class="fab fa-facebook-f"></i></a>
-                <a class="text-white-50 ms-3" href=""><i class="fab fa-twitter"></i></a>
-                <a class="text-white-50 ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                <a class="text-white-50 ms-3" href=""><i class="fab fa-instagram"></i></a>
+                <a aria-label="Facebook" class="text-white-50 ms-3" href=""><i class="fab fa-facebook-f"></i></a>
+                <a aria-label="Twitter" class="text-white-50 ms-3" href=""><i class="fab fa-twitter"></i></a>
+                <a aria-label="LinkedIn" class="text-white-50 ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                <a aria-label="Instagram" class="text-white-50 ms-3" href=""><i class="fab fa-instagram"></i></a>
             </div> -->
         </div>
 
@@ -59,7 +59,7 @@
             <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
                 <h1 class="fw-bold text-primary m-0"><span class="text-white">Izzy Rescue</span></h1>
             </a>
-            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <button type="button" class="navbar-toggler me-4" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -81,7 +81,7 @@
                     </div> -->
                     <a href="#Contact" class="nav-item nav-link">Contact</a>
                 </div>
-                <div class="d-none d-lg-flex ms-2"></div>
+                <div class="d-none d-lg-flex ms-2">
                     <a class="btn btn-outline-primary py-2 px-3" href="donate.html">
                         Donate Now
                         <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
@@ -223,12 +223,12 @@
     <!-- About End -->
 
     <!--Pet Finder Embeded Start-->
-    <div id="about" class="container-xxl py-5">
+    <div id="petfinder" class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
     <pet-scroller
-    type='[]'
-    age='[]'
+    type="[]"
+    age="[]"
     limit="12"
     hidebreed
     status="adoptable"
@@ -476,7 +476,7 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/izzyFixed.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" alt="Testimonial photo" src="img/izzyFixed.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
                         <p>Izzy Mae Feline Rescue has been a true blessing. The adoption process was seamless, and our new cat has brought immense joy to our home. The staff is incredibly caring and knowledgeable</p>
                         <h5 class="mb-1">Emily Johnson</h5>
@@ -484,7 +484,7 @@
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/izzyFixed.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" alt="Testimonial photo" src="img/izzyFixed.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
                         <p>Adopting from Izzy Mae Feline Rescue was a wonderful experience. The team was supportive throughout the process, and our new feline friend has settled in perfectly. Highly recommend their services!</p>
                         <h5 class="mb-1">Michael Smith</h5>
@@ -492,7 +492,7 @@
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/izzyFixed.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" alt="Testimonial photo" src="img/izzyFixed.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
                         <p>Frank (My adopted cat) Carried me through the pandmic, thanks to the amazing team of Izzy Mae Rescue</p>
                         <h5 class="mb-1">Daniel schwartz</h5>
@@ -513,10 +513,10 @@
                     <h1 class="fw-bold text-primary mb-4"><span class="text-white">Izzy Mae Feline Rescue</span></h1>
                     <p>Izzy Mae Feline Rescue is a 501(C)3 organization. Federal Tax I.D. number: 99-3657266. All donations are tax deductible as permitted by law. For general questions about our rescue operations, adoption process, or volunteer opportunities, please email us.</p>
                     <!-- <div class="d-flex pt-2">
-                        <a class="btn btn-square me-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square me-1" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a aria-label="Twitter" class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                        <a aria-label="Facebook" class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a aria-label="YouTube" class="btn btn-square" href=""><i class="fab fa-youtube"></i></a>
+                        <a aria-label="LinkedIn" class="btn btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
                     </div> -->
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -538,7 +538,7 @@
                     <h5 class="text-light mb-4">Newsletter</h5>
                     <p>Coming soon</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <!-- <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <!-- <input aria-label="Email address" class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button> -->
                     </div>
                 </div>
@@ -562,7 +562,7 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" aria-label="Back to top" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
