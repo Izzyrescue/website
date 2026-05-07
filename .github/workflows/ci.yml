@@ -33,7 +33,6 @@ jobs:
         with:
           args: >-
             --no-progress
-            --exclude-mail
             --exclude "^#$"
             --exclude "^file:"
             --exclude "htmlcodex\.com"

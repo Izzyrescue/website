@@ -1,6 +1,7 @@
 DirectoryPath: "."
 CheckExternal: false
 IgnoreEmptyHref: true
+IgnoreEmptyAlt: true
 IgnoreInternalEmptyHash: true
 IgnoreDirectoryMissingTrailingSlash: true
 IgnoreURLs:
