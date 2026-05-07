@@ -1,0 +1,7 @@
+DirectoryPath: "."
+CheckExternal: false
+IgnoreEmptyHref: true
+IgnoreInternalEmptyHash: true
+IgnoreDirectoryMissingTrailingSlash: true
+IgnoreURLs:
+  - "^#$"

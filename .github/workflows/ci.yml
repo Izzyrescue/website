@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  htmlhint:
+    name: HTML lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npx --yes htmlhint "*.html"
+
+  lychee:
+    name: Broken links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude-mail --exclude "^#$" "**/*.html"
+          fail: true
+
+  htmltest:
+    name: Missing assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install htmltest
+        run: curl https://htmltest.wjdp.uk | bash -s -- -b ./bin
+      - run: ./bin/htmltest -c .htmltest.yml
+
+  pa11y:
+    name: Accessibility (pa11y)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install pa11y-ci and http-server
+        run: npm install -g pa11y-ci http-server
+      - name: Start local server
+        run: http-server . -p 3000 -s &
+      - name: Wait for server
+        run: npx --yes wait-on http://localhost:3000 --timeout 30000
+      - name: Run pa11y-ci
+        run: pa11y-ci
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install http-server
+        run: npm install -g http-server
+      - name: Start local server
+        run: http-server . -p 3000 -s &
+      - name: Wait for server
+        run: npx --yes wait-on http://localhost:3000 --timeout 30000
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:3000/
+            http://localhost:3000/about.html
+            http://localhost:3000/donate.html
+            http://localhost:3000/adopterApp.html
+          uploadArtifacts: true
+          temporaryPublicStorage: true
