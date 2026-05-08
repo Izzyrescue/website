@@ -95,6 +95,7 @@
     margin-right: 30px;
     padding: 25px 0;
     color: #FFFFFF;
+    font-family: "Saira", sans-serif;
     font-weight: 500;
     outline: none;
 }
@@ -412,6 +413,7 @@
     padding: 0;
     text-align: left;
     color: rgba(255,255,255,0.5);
+    font-family: "Saira", sans-serif;
     font-weight: normal;
     text-transform: capitalize;
     transition: .3s;
