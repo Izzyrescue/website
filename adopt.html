@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Adopt a Cat - Izzy Mae Feline Rescue</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="img/favicon.svg" rel="icon" type="image/svg+xml">
+    <link href="img/favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
@@ -21,67 +21,30 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             background: #fff;
         }
-        .cat-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.14);
-        }
-        .cat-card img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-        }
-        .cat-card .card-body {
-            padding: 1.25rem;
-        }
-        .status-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+        .cat-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.14); }
+        .cat-card img { width: 100%; height: 260px; object-fit: cover; }
+        .cat-card .card-body { padding: 1.25rem; }
+        .status-badge { font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.05em; }
         .status-available { background: #d4edda; color: #155724; }
         .status-pending   { background: #fff3cd; color: #856404; }
         .status-adopted   { background: #d1ecf1; color: #0c5460; }
-        .cat-meta span {
-            font-size: 0.85rem;
-            color: #666;
-            margin-right: 12px;
-        }
-        .no-cats {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
+        .cat-meta span { font-size: 0.85rem; color: #666; margin-right: 12px; }
+        .filter-btn { border-radius: 50px; padding: 6px 20px; font-size: 0.875rem; font-weight: 500; margin: 4px; border: 2px solid #FF6F0F; color: #FF6F0F; background: transparent; cursor: pointer; transition: 0.2s; }
+        .filter-btn.active, .filter-btn:hover { background: #FF6F0F; color: #fff; }
+        .loading { text-align: center; padding: 60px; color: #999; }
+        .no-cats { text-align: center; padding: 60px 20px; color: #999; }
         .no-cats i { font-size: 3rem; margin-bottom: 16px; display: block; }
-        .filter-btn {
-            border-radius: 50px;
-            padding: 6px 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin: 4px;
-            border: 2px solid #FF6F0F;
-            color: #FF6F0F;
-            background: transparent;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .filter-btn.active, .filter-btn:hover {
-            background: #FF6F0F;
-            color: #fff;
-        }
     </style>
 </head>
 <body>
-
-    <!-- Spinner -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
 
-    <!-- Navbar -->
     <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex">
+            <div class="col-lg-6 px-5 text-start"></div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
                 <h1 class="fw-bold text-primary m-0"><span class="text-white">Izzy Mae Feline Rescue</span></h1>
@@ -92,7 +55,6 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="our-work.html" class="nav-item nav-link">Our Work</a>
                     <a href="index.html#about" class="nav-item nav-link">About</a>
                     <a href="index.html#programs" class="nav-item nav-link">Programs</a>
                     <a href="adopt.html" class="nav-item nav-link active">Adopt</a>
@@ -103,29 +65,25 @@
         </nav>
     </div>
 
-    <!-- Page Header -->
-    <div class="container-fluid bg-dark text-white" style="padding-top: 120px; padding-bottom: 60px; margin-bottom: 0;">
+    <div class="container-fluid bg-dark text-white" style="padding-top: 120px; padding-bottom: 60px;">
         <div class="container text-center">
             <h1 class="display-5 fw-bold text-white mb-3">Find Your Purrfect Match</h1>
             <p class="text-white-50 fs-5">Every cat here is spayed/neutered, vaccinated, and ready for their forever home.</p>
         </div>
     </div>
 
-    <!-- Filter Buttons -->
     <div class="container-fluid bg-light py-3">
         <div class="text-center">
-            <button class="filter-btn active" onclick="filterCats('all')">All Cats</button>
-            <button class="filter-btn" onclick="filterCats('Available')">Available</button>
-            <button class="filter-btn" onclick="filterCats('Pending')">Pending</button>
-            <button class="filter-btn" onclick="filterCats('Adopted')">Adopted</button>
+            <button class="filter-btn active" onclick="filterCats('all', this)">All Cats</button>
+            <button class="filter-btn" onclick="filterCats('Available', this)">Available</button>
+            <button class="filter-btn" onclick="filterCats('Pending', this)">Pending</button>
+            <button class="filter-btn" onclick="filterCats('Adopted', this)">Adopted</button>
         </div>
     </div>
 
-    <!-- Cat Cards -->
     <div class="container py-5">
-        <div class="row g-4" id="cat-grid">
-            <!-- Cards are rendered here by JavaScript -->
-        </div>
+        <div id="loading" class="loading"><i class="fa fa-spinner fa-spin fa-2x"></i><p>Loading cats...</p></div>
+        <div class="row g-4" id="cat-grid"></div>
         <div id="no-cats" class="no-cats d-none">
             <i class="fa fa-cat text-muted"></i>
             <h4 class="text-muted">No cats in this category yet</h4>
@@ -133,48 +91,23 @@
         </div>
     </div>
 
-    <!-- CTA -->
     <div class="container-fluid bg-light py-5 text-center">
         <h4 class="mb-3">Interested in adopting?</h4>
         <p class="text-muted mb-4">Reach out to us and we'll guide you through the process.</p>
-        <a href="adopterApp.html" class="btn btn-primary py-2 px-4">
-            Apply to Adopt
+        <a href="index.html#Contact" class="btn btn-primary py-2 px-4">
+            Contact Us
             <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                 <i class="fa fa-arrow-right"></i>
             </div>
         </a>
     </div>
 
-    <!-- Footer -->
-    <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h1 class="fw-bold text-primary mb-4"><span class="text-white">Izzy Mae Feline Rescue</span></h1>
-                    <p>Izzy Mae Feline Rescue is a 501(c)(3) nonprofit organization founded in 2024. Federal Tax I.D. number: 99-3657266. All donations are tax deductible as permitted by law.</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Registered Address</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>PO Box 999<br>Morgan Hill, CA 95038</p>
-                    <p class="mb-2">We operate out of the San Francisco Bay Area. However, our official registered agent address for legal mail is:</p>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>506 S Spring St #13308<br>Los Angeles, CA 90013</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@izzyrescue.org</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Newsletter</h5>
-                    <p>Coming soon</p>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid bg-dark text-white-50 footer pt-4 pb-2">
         <div class="container-fluid copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">Izzy Mae Feline Rescue</a>, All Right Reserved.
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                    </div>
+                <div class="row py-3">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">&copy; <a href="#">Izzy Mae Feline Rescue</a>, All Right Reserved.</div>
+                    <div class="col-md-6 text-center text-md-end">Designed By <a href="https://htmlcodex.com">HTML Codex</a></div>
                 </div>
             </div>
         </div>
@@ -186,65 +119,65 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="js/main.js"></script>
-
     <script>
-        const STORAGE_KEY = 'izzyRescueCats';
+        const AIRTABLE_TOKEN = 'patAruyef1ty4bRNq.1d1627363dff5e47ace1e887b8968a6c6e0e35bd092a71dbebe42f99ba4f53f6';
+        const BASE_ID = 'appw15vonDTPqVlGl';
+        const TABLE_NAME = 'Table 1';
+        let allCats = [];
 
-        function getCats() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : [];
+        async function fetchCats() {
+            try {
+                const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`,
+                    { headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` } });
+                const data = await res.json();
+                allCats = data.records.map(r => ({ id: r.id, ...r.fields }));
+                document.getElementById('loading').classList.add('d-none');
+                renderCats('all');
+            } catch(e) {
+                document.getElementById('loading').innerHTML = '<p class="text-muted">Unable to load cats right now. Please try again later.</p>';
+            }
         }
 
-        function statusClass(status) {
-            if (status === 'Available') return 'status-available';
-            if (status === 'Pending')   return 'status-pending';
-            if (status === 'Adopted')   return 'status-adopted';
-            return 'status-available';
+        function statusClass(s) {
+            if (s === 'Available') return 'status-available';
+            if (s === 'Pending') return 'status-pending';
+            return 'status-adopted';
         }
 
         function renderCats(filter) {
-            const cats = getCats();
             const grid = document.getElementById('cat-grid');
             const noCats = document.getElementById('no-cats');
-            const filtered = filter === 'all' ? cats : cats.filter(c => c.status === filter);
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                noCats.classList.remove('d-none');
-                return;
-            }
+            const filtered = filter === 'all' ? allCats : allCats.filter(c => c.Status === filter);
+            if (filtered.length === 0) { grid.innerHTML = ''; noCats.classList.remove('d-none'); return; }
             noCats.classList.add('d-none');
-
             grid.innerHTML = filtered.map(cat => `
                 <div class="col-lg-4 col-md-6">
                     <div class="cat-card">
-                        <img src="${cat.photo.startsWith('http') ? cat.photo : 'img/' + cat.photo}"
-                             alt="${cat.name}"
-                             onerror="this.src='https://placehold.co/400x260/FFF0E6/FF6F0F?text=🐱+${encodeURIComponent(cat.name)}'">
+                        <img src="${cat.Photo ? (cat.Photo.startsWith('http') ? cat.Photo : 'img/' + cat.Photo) : 'https://placehold.co/400x260/FFF0E6/FF6F0F?text=🐱'}"
+                             alt="${cat.Name || 'Cat'}"
+                             onerror="this.src='https://placehold.co/400x260/FFF0E6/FF6F0F?text=🐱'">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                <h5 class="mb-0 fw-bold">${cat.name}</h5>
-                                <span class="status-badge ${statusClass(cat.status)}">${cat.status}</span>
+                                <h5 class="mb-0 fw-bold">${cat.Name || 'Unknown'}</h5>
+                                <span class="status-badge ${statusClass(cat.Status)}">${cat.Status || 'Available'}</span>
                             </div>
                             <div class="cat-meta mb-3">
-                                ${cat.age ? `<span><i class="fa fa-birthday-cake me-1"></i>${cat.age}</span>` : ''}
-                                ${cat.gender ? `<span><i class="fa fa-venus-mars me-1"></i>${cat.gender}</span>` : ''}
+                                ${cat.Age ? `<span><i class="fa fa-birthday-cake me-1"></i>${cat.Age}</span>` : ''}
+                                ${cat.Gender ? `<span><i class="fa fa-venus-mars me-1"></i>${cat.Gender}</span>` : ''}
                             </div>
-                            <p class="text-muted mb-0" style="font-size:0.9rem;">${cat.bio}</p>
+                            <p class="text-muted mb-0" style="font-size:0.9rem;">${cat.Bio || ''}</p>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                </div>`).join('');
         }
 
-        function filterCats(status) {
+        function filterCats(filter, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            renderCats(status);
+            btn.classList.add('active');
+            renderCats(filter);
         }
 
-        // Initial render
-        renderCats('all');
+        fetchCats();
     </script>
 </body>
 </html>

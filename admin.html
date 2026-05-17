@@ -9,201 +9,68 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f4f4f6;
-            margin: 0;
-            padding: 0;
-            color: #222;
-        }
-        header {
-            background: #001D23;
-            color: #fff;
-            padding: 18px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        body { font-family: 'Inter', sans-serif; background: #f4f4f6; margin: 0; color: #222; }
+        header { background: #001D23; color: #fff; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; }
         header h1 { font-family: 'Saira', sans-serif; font-size: 1.4rem; margin: 0; color: #FF6F0F; }
         header a { color: rgba(255,255,255,0.6); font-size: 0.875rem; text-decoration: none; }
         header a:hover { color: #FF6F0F; }
-
         .admin-wrap { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-
-        /* Form card */
-        .form-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 32px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-            margin-bottom: 40px;
-        }
-        .form-card h2 { font-family: 'Saira', sans-serif; font-size: 1.25rem; margin-bottom: 24px; color: #001D23; }
+        .form-card, .list-card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); margin-bottom: 40px; }
+        .form-card h2, .list-card h2 { font-family: 'Saira', sans-serif; font-size: 1.25rem; margin-bottom: 24px; color: #001D23; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-grid .full { grid-column: 1 / -1; }
         label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #555; margin-bottom: 6px; }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1.5px solid #e0e0e0;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            background: #fafafa;
-            color: #222;
-            transition: border-color 0.2s;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #FF6F0F;
-            background: #fff;
-        }
+        input, select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #e0e0e0; border-radius: 8px; font-family: inherit; font-size: 0.95rem; background: #fafafa; color: #222; transition: border-color 0.2s; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #FF6F0F; background: #fff; }
         textarea { resize: vertical; min-height: 90px; }
         .photo-hint { font-size: 0.78rem; color: #888; margin-top: 5px; }
-
-        /* Preview */
-        .photo-preview {
-            width: 80px; height: 80px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 2px solid #e0e0e0;
-            margin-top: 8px;
-            display: none;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: #FF6F0F;
-            color: #fff;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+        .photo-preview { width: 80px; height: 80px; border-radius: 8px; object-fit: cover; border: 2px solid #e0e0e0; margin-top: 8px; display: none; }
+        .btn-primary { background: #FF6F0F; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: background 0.2s; }
         .btn-primary:hover { background: #e05e00; }
-        .btn-secondary {
-            background: transparent;
-            color: #666;
-            border: 1.5px solid #ddd;
-            padding: 11px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
-            margin-right: 8px;
-            transition: 0.2s;
-        }
+        .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-secondary { background: transparent; color: #666; border: 1.5px solid #ddd; padding: 11px 24px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; cursor: pointer; margin-right: 8px; transition: 0.2s; }
         .btn-secondary:hover { border-color: #999; color: #333; }
-        .btn-danger {
-            background: transparent;
-            color: #dc3545;
-            border: 1.5px solid #dc3545;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .btn-danger { background: transparent; color: #dc3545; border: 1.5px solid #dc3545; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
         .btn-danger:hover { background: #dc3545; color: #fff; }
-        .btn-edit {
-            background: transparent;
-            color: #FF6F0F;
-            border: 1.5px solid #FF6F0F;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-right: 6px;
-            transition: 0.2s;
-        }
+        .btn-edit { background: transparent; color: #FF6F0F; border: 1.5px solid #FF6F0F; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; margin-right: 6px; transition: 0.2s; }
         .btn-edit:hover { background: #FF6F0F; color: #fff; }
-
-        /* Cat list */
-        .list-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 32px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-        }
-        .list-card h2 { font-family: 'Saira', sans-serif; font-size: 1.25rem; margin-bottom: 24px; color: #001D23; }
-        .cat-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 14px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
+        .cat-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
         .cat-row:last-child { border-bottom: none; }
-        .cat-row img {
-            width: 64px; height: 64px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 2px solid #f0f0f0;
-            flex-shrink: 0;
-        }
+        .cat-row img { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; border: 2px solid #f0f0f0; flex-shrink: 0; }
         .cat-info { flex: 1; min-width: 0; }
         .cat-info strong { font-size: 1rem; display: block; }
         .cat-info small { color: #888; font-size: 0.8rem; }
         .cat-bio-preview { color: #555; font-size: 0.85rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px; }
         .cat-actions { display: flex; align-items: center; flex-shrink: 0; }
-
-        .badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            margin-left: 8px;
-        }
+        .badge { font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.04em; margin-left: 8px; }
         .badge-available { background: #d4edda; color: #155724; }
         .badge-pending   { background: #fff3cd; color: #856404; }
         .badge-adopted   { background: #d1ecf1; color: #0c5460; }
-
         .empty-state { text-align: center; padding: 40px; color: #aaa; }
         .empty-state i { font-size: 2.5rem; display: block; margin-bottom: 12px; }
-
-        .toast-msg {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #001D23; color: #fff;
-            padding: 12px 24px; border-radius: 8px;
-            font-size: 0.9rem; font-weight: 500;
-            opacity: 0; transition: opacity 0.3s;
-            z-index: 9999;
-        }
+        .toast-msg { position: fixed; bottom: 30px; right: 30px; background: #001D23; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; opacity: 0; transition: opacity 0.3s; z-index: 9999; }
         .toast-msg.show { opacity: 1; }
-
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .cat-row { flex-wrap: wrap; }
-        }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .cat-row { flex-wrap: wrap; } }
     </style>
 </head>
 <body>
 
 <header>
     <h1>🐱 Cat Manager — Izzy Mae Feline Rescue</h1>
-    <a href="adopt.html" target="_blank"><i class="fa fa-external-link-alt me-1"></i> View Adoption Page</a>
+    <a href="adopt.html" target="_blank"><i class="fa fa-external-link-alt"></i> View Adoption Page</a>
 </header>
 
 <div class="admin-wrap">
-
-    <!-- Add / Edit Form -->
     <div class="form-card">
         <h2 id="form-title">➕ Add a New Cat</h2>
         <input type="hidden" id="edit-id">
         <div class="form-grid">
             <div>
-                <label for="cat-name">Cat's Name *</label>
+                <label>Cat's Name *</label>
                 <input type="text" id="cat-name" placeholder="e.g. Whiskers">
             </div>
             <div>
-                <label for="cat-status">Adoption Status *</label>
+                <label>Adoption Status *</label>
                 <select id="cat-status">
                     <option value="Available">Available</option>
                     <option value="Pending">Pending</option>
@@ -211,11 +78,11 @@
                 </select>
             </div>
             <div>
-                <label for="cat-age">Age</label>
+                <label>Age</label>
                 <input type="text" id="cat-age" placeholder="e.g. 2 years, 4 months">
             </div>
             <div>
-                <label for="cat-gender">Gender</label>
+                <label>Gender</label>
                 <select id="cat-gender">
                     <option value="">— Select —</option>
                     <option value="Female">Female</option>
@@ -223,43 +90,38 @@
                 </select>
             </div>
             <div class="full">
-                <label for="cat-photo">Photo Filename</label>
+                <label>Photo Filename</label>
                 <input type="text" id="cat-photo" placeholder="e.g. mittens.jpg" oninput="previewPhoto(this.value)">
                 <p class="photo-hint">Upload the photo to your <strong>img/</strong> folder on GitHub first, then type the filename here (e.g. <em>mittens.jpg</em>). Or paste a full URL (https://...).</p>
                 <img id="photo-preview" class="photo-preview" alt="Preview">
             </div>
             <div class="full">
-                <label for="cat-bio">Bio *</label>
+                <label>Bio *</label>
                 <textarea id="cat-bio" placeholder="Tell us about this cat's personality, likes, and any special needs..."></textarea>
             </div>
         </div>
         <div style="margin-top: 20px;">
             <button class="btn-secondary" onclick="resetForm()">Clear</button>
-            <button class="btn-primary" onclick="saveCat()">Save Cat</button>
+            <button class="btn-primary" id="save-btn" onclick="saveCat()">Save Cat</button>
         </div>
     </div>
 
-    <!-- Cat List -->
     <div class="list-card">
         <h2>🐾 Current Cats (<span id="cat-count">0</span>)</h2>
-        <div id="cat-list"></div>
+        <div id="cat-list"><div class="empty-state"><i class="fa fa-spinner fa-spin"></i><p>Loading...</p></div></div>
     </div>
-
 </div>
 
 <div class="toast-msg" id="toast"></div>
 
 <script>
-    const STORAGE_KEY = 'izzyRescueCats';
+    const AIRTABLE_TOKEN = 'patAruyef1ty4bRNq.1d1627363dff5e47ace1e887b8968a6c6e0e35bd092a71dbebe42f99ba4f53f6';
+    const BASE_ID = 'appw15vonDTPqVlGl';
+    const TABLE_NAME = 'Table 1';
+    const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+    const HEADERS = { 'Authorization': `Bearer ${AIRTABLE_TOKEN}`, 'Content-Type': 'application/json' };
 
-    function getCats() {
-        const data = localStorage.getItem(STORAGE_KEY);
-        return data ? JSON.parse(data) : [];
-    }
-
-    function saveCats(cats) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(cats));
-    }
+    let cats = [];
 
     function showToast(msg) {
         const t = document.getElementById('toast');
@@ -271,13 +133,23 @@
     function previewPhoto(val) {
         const preview = document.getElementById('photo-preview');
         if (!val) { preview.style.display = 'none'; return; }
-        const src = val.startsWith('http') ? val : 'img/' + val;
-        preview.src = src;
+        preview.src = val.startsWith('http') ? val : 'img/' + val;
         preview.style.display = 'block';
         preview.onerror = () => { preview.style.display = 'none'; };
     }
 
-    function saveCat() {
+    async function fetchCats() {
+        try {
+            const res = await fetch(API_URL, { headers: HEADERS });
+            const data = await res.json();
+            cats = data.records.map(r => ({ id: r.id, ...r.fields }));
+            renderList();
+        } catch(e) {
+            document.getElementById('cat-list').innerHTML = '<div class="empty-state"><p>Could not load cats. Check your connection.</p></div>';
+        }
+    }
+
+    async function saveCat() {
         const name   = document.getElementById('cat-name').value.trim();
         const status = document.getElementById('cat-status').value;
         const age    = document.getElementById('cat-age').value.trim();
@@ -286,51 +158,68 @@
         const bio    = document.getElementById('cat-bio').value.trim();
         const editId = document.getElementById('edit-id').value;
 
-        if (!name || !bio) {
-            showToast('⚠️ Name and bio are required!');
-            return;
+        if (!name || !bio) { showToast('⚠️ Name and bio are required!'); return; }
+
+        const btn = document.getElementById('save-btn');
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        const fields = { Name: name, Status: status, Bio: bio };
+        if (age)    fields.Age    = age;
+        if (gender) fields.Gender = gender;
+        if (photo)  fields.Photo  = photo;
+
+        try {
+            if (editId) {
+                await fetch(`${API_URL}/${editId}`, {
+                    method: 'PATCH',
+                    headers: HEADERS,
+                    body: JSON.stringify({ fields })
+                });
+                showToast('✅ ' + name + ' updated!');
+            } else {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: HEADERS,
+                    body: JSON.stringify({ fields })
+                });
+                showToast('🐱 ' + name + ' added!');
+            }
+            resetForm();
+            await fetchCats();
+        } catch(e) {
+            showToast('❌ Something went wrong. Please try again.');
         }
 
-        const cats = getCats();
-        const catData = { name, status, age, gender, photo, bio };
-
-        if (editId !== '') {
-            cats[parseInt(editId)] = catData;
-            showToast('✅ ' + name + ' updated!');
-        } else {
-            catData.id = Date.now();
-            cats.push(catData);
-            showToast('🐱 ' + name + ' added!');
-        }
-
-        saveCats(cats);
-        resetForm();
-        renderList();
+        btn.disabled = false;
+        btn.textContent = 'Save Cat';
     }
 
-    function editCat(index) {
-        const cats = getCats();
-        const cat = cats[index];
-        document.getElementById('cat-name').value   = cat.name;
-        document.getElementById('cat-status').value = cat.status;
-        document.getElementById('cat-age').value    = cat.age || '';
-        document.getElementById('cat-gender').value = cat.gender || '';
-        document.getElementById('cat-photo').value  = cat.photo || '';
-        document.getElementById('cat-bio').value    = cat.bio;
-        document.getElementById('edit-id').value    = index;
-        document.getElementById('form-title').textContent = '✏️ Editing: ' + cat.name;
-        previewPhoto(cat.photo || '');
+    function editCat(id) {
+        const cat = cats.find(c => c.id === id);
+        if (!cat) return;
+        document.getElementById('cat-name').value   = cat.Name || '';
+        document.getElementById('cat-status').value = cat.Status || 'Available';
+        document.getElementById('cat-age').value    = cat.Age || '';
+        document.getElementById('cat-gender').value = cat.Gender || '';
+        document.getElementById('cat-photo').value  = cat.Photo || '';
+        document.getElementById('cat-bio').value    = cat.Bio || '';
+        document.getElementById('edit-id').value    = cat.id;
+        document.getElementById('form-title').textContent = '✏️ Editing: ' + cat.Name;
+        previewPhoto(cat.Photo || '');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function deleteCat(index) {
-        const cats = getCats();
-        const name = cats[index].name;
-        if (!confirm('Remove ' + name + ' from the list?')) return;
-        cats.splice(index, 1);
-        saveCats(cats);
-        renderList();
-        showToast('🗑️ ' + name + ' removed.');
+    async function deleteCat(id) {
+        const cat = cats.find(c => c.id === id);
+        if (!confirm('Remove ' + (cat?.Name || 'this cat') + ' from the list?')) return;
+        try {
+            await fetch(`${API_URL}/${id}`, { method: 'DELETE', headers: HEADERS });
+            showToast('🗑️ ' + (cat?.Name || 'Cat') + ' removed.');
+            await fetchCats();
+        } catch(e) {
+            showToast('❌ Could not remove. Please try again.');
+        }
     }
 
     function resetForm() {
@@ -345,43 +234,37 @@
         document.getElementById('photo-preview').style.display = 'none';
     }
 
-    function badgeClass(status) {
-        if (status === 'Available') return 'badge-available';
-        if (status === 'Pending')   return 'badge-pending';
+    function badgeClass(s) {
+        if (s === 'Available') return 'badge-available';
+        if (s === 'Pending')   return 'badge-pending';
         return 'badge-adopted';
     }
 
     function renderList() {
-        const cats = getCats();
-        const list = document.getElementById('cat-list');
         document.getElementById('cat-count').textContent = cats.length;
-
+        const list = document.getElementById('cat-list');
         if (cats.length === 0) {
-            list.innerHTML = `<div class="empty-state"><i class="fa fa-cat"></i><p>No cats added yet. Use the form above to add your first cat!</p></div>`;
+            list.innerHTML = '<div class="empty-state"><i class="fa fa-cat"></i><p>No cats added yet. Use the form above to add your first cat!</p></div>';
             return;
         }
-
-        list.innerHTML = cats.map((cat, i) => `
+        list.innerHTML = cats.map(cat => `
             <div class="cat-row">
-                <img src="${cat.photo ? (cat.photo.startsWith('http') ? cat.photo : 'img/' + cat.photo) : 'https://placehold.co/64x64/FFF0E6/FF6F0F?text=🐱'}"
-                     alt="${cat.name}"
+                <img src="${cat.Photo ? (cat.Photo.startsWith('http') ? cat.Photo : 'img/' + cat.Photo) : 'https://placehold.co/64x64/FFF0E6/FF6F0F?text=🐱'}"
+                     alt="${cat.Name || ''}"
                      onerror="this.src='https://placehold.co/64x64/FFF0E6/FF6F0F?text=🐱'">
                 <div class="cat-info">
-                    <strong>${cat.name} <span class="badge ${badgeClass(cat.status)}">${cat.status}</span></strong>
-                    <small>${[cat.age, cat.gender].filter(Boolean).join(' · ') || 'No age/gender set'}</small>
-                    <div class="cat-bio-preview">${cat.bio}</div>
+                    <strong>${cat.Name || 'Unknown'} <span class="badge ${badgeClass(cat.Status)}">${cat.Status || ''}</span></strong>
+                    <small>${[cat.Age, cat.Gender].filter(Boolean).join(' · ') || 'No age/gender set'}</small>
+                    <div class="cat-bio-preview">${cat.Bio || ''}</div>
                 </div>
                 <div class="cat-actions">
-                    <button class="btn-edit" onclick="editCat(${i})"><i class="fa fa-pen"></i> Edit</button>
-                    <button class="btn-danger" onclick="deleteCat(${i})"><i class="fa fa-trash"></i> Remove</button>
+                    <button class="btn-edit" onclick="editCat('${cat.id}')"><i class="fa fa-pen"></i> Edit</button>
+                    <button class="btn-danger" onclick="deleteCat('${cat.id}')"><i class="fa fa-trash"></i> Remove</button>
                 </div>
-            </div>
-        `).join('');
+            </div>`).join('');
     }
 
-    // Init
-    renderList();
+    fetchCats();
 </script>
-
 </body>
 </html>
