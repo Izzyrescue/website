@@ -36,98 +36,91 @@
         .no-cats { text-align: center; padding: 60px 20px; color: #999; }
         .no-cats i { font-size: 3rem; margin-bottom: 16px; display: block; }
         .learn-more-btn {
-            display: block;
-            width: 100%;
-            margin-top: 12px;
-            padding: 8px;
-            background: transparent;
-            border: 2px solid #FF6F0F;
-            color: #FF6F0F;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: 0.2s;
+            display: block; width: 100%; margin-top: 12px; padding: 8px;
+            background: transparent; border: 2px solid #FF6F0F; color: #FF6F0F;
+            border-radius: 8px; font-weight: 600; font-size: 0.875rem;
+            cursor: pointer; transition: 0.2s;
         }
         .learn-more-btn:hover { background: #FF6F0F; color: #fff; }
 
-        /* Modal overlay */
+        /* Modal */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+            z-index: 9999; align-items: center; justify-content: center; padding: 20px;
         }
         .modal-overlay.active { display: flex; }
         .modal-box {
-            background: #fff;
-            border-radius: 16px;
-            max-width: 680px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
+            background: #fff; border-radius: 16px; max-width: 680px; width: 100%;
+            max-height: 90vh; overflow-y: auto; position: relative;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        .modal-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 16px 16px 0 0;
-        }
-        .modal-body { padding: 28px; }
         .modal-close {
-            position: absolute;
-            top: 14px; right: 14px;
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            border: none;
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.2s;
-            z-index: 10;
+            position: absolute; top: 14px; right: 14px;
+            background: rgba(0,0,0,0.5); color: #fff; border: none;
+            width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; z-index: 10;
         }
         .modal-close:hover { background: rgba(0,0,0,0.8); }
+
+        /* Scrollable photo strip */
+        .photo-strip {
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 12px;
+            background: #111;
+            border-radius: 16px 16px 0 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .photo-strip::-webkit-scrollbar { height: 4px; }
+        .photo-strip::-webkit-scrollbar-thumb { background: #FF6F0F; border-radius: 4px; }
+        .photo-strip::-webkit-scrollbar-track { background: #333; }
+        .photo-strip img {
+            height: 280px;
+            min-width: 380px;
+            max-width: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .photo-strip img:hover { transform: scale(1.02); }
+        .photo-strip.single-photo img { min-width: 100%; max-width: 100%; border-radius: 10px; }
+
+        .modal-body { padding: 28px; }
         .modal-title { font-family: 'Saira', sans-serif; font-size: 1.8rem; font-weight: 700; color: #001D23; margin-bottom: 4px; }
         .modal-meta { margin-bottom: 16px; }
         .modal-meta span { font-size: 0.875rem; color: #666; margin-right: 16px; }
         .modal-section { margin-bottom: 16px; }
         .modal-section h6 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #FF6F0F; margin-bottom: 6px; }
-        .modal-section p { color: #444; font-size: 0.95rem; margin: 0; }
+        .modal-section p { color: #444; font-size: 0.95rem; margin: 0; line-height: 1.7; }
         .modal-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .modal-tag {
-            background: #FFF0E6;
-            color: #FF6F0F;
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
+        .modal-tag { background: #FFF0E6; color: #FF6F0F; padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
         .apply-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: #FF6F0F;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: background 0.2s;
-            margin-top: 8px;
+            display: block; width: 100%; padding: 14px; background: #FF6F0F;
+            color: #fff; border: none; border-radius: 10px; font-size: 1rem;
+            font-weight: 700; cursor: pointer; text-align: center;
+            text-decoration: none; transition: background 0.2s; margin-top: 8px;
         }
         .apply-btn:hover { background: #e05e00; color: #fff; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+            z-index: 99999; align-items: center; justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 20px; color: #fff;
+            font-size: 2rem; cursor: pointer; background: none; border: none;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +213,7 @@
     <div class="modal-overlay" id="cat-modal" onclick="closeModalOutside(event)">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
-            <img id="modal-img" class="modal-img" src="" alt="">
+            <div class="photo-strip" id="modal-photo-strip"></div>
             <div class="modal-body">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <div class="modal-title" id="modal-name"></div>
@@ -244,6 +237,12 @@
                 </a>
             </div>
         </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fa fa-times"></i></button>
+        <img id="lightbox-img" src="" alt="">
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -278,7 +277,17 @@
 
         function getPhotoSrc(photo) {
             if (!photo) return 'https://placehold.co/400x260/FFF0E6/FF6F0F?text=🐱';
-            return photo.startsWith('http') ? photo : 'img/' + photo;
+            return photo.trim().startsWith('http') ? photo.trim() : 'img/' + photo.trim();
+        }
+
+        function getPhotoList(cat) {
+            // Use Photos field if available, otherwise fall back to Photo field
+            if (cat.Photos) {
+                return cat.Photos.split(',').map(p => p.trim()).filter(Boolean);
+            } else if (cat.Photo) {
+                return [cat.Photo.trim()];
+            }
+            return [];
         }
 
         function renderCats(filter) {
@@ -287,11 +296,13 @@
             const filtered = filter === 'all' ? allCats : allCats.filter(c => c.Status === filter);
             if (filtered.length === 0) { grid.innerHTML = ''; noCats.classList.remove('d-none'); return; }
             noCats.classList.add('d-none');
-            grid.innerHTML = filtered.map(cat => `
+            grid.innerHTML = filtered.map(cat => {
+                const photos = getPhotoList(cat);
+                const mainPhoto = photos.length > 0 ? getPhotoSrc(photos[0]) : 'https://placehold.co/400x260/FFF0E6/FF6F0F?text=🐱';
+                return `
                 <div class="col-lg-4 col-md-6">
                     <div class="cat-card" onclick="openModal('${cat.id}')">
-                        <img src="${getPhotoSrc(cat.Photo)}"
-                             alt="${cat.Name || 'Cat'}"
+                        <img src="${mainPhoto}" alt="${cat.Name || 'Cat'}"
                              onerror="this.src='https://placehold.co/400x260/FFF0E6/FF6F0F?text=🐱'">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start mb-2">
@@ -306,7 +317,8 @@
                             <button class="learn-more-btn">Learn More &amp; Apply</button>
                         </div>
                     </div>
-                </div>`).join('');
+                </div>`;
+            }).join('');
         }
 
         function filterCats(filter, btn) {
@@ -319,26 +331,38 @@
             const cat = allCats.find(c => c.id === id);
             if (!cat) return;
 
-            document.getElementById('modal-img').src = getPhotoSrc(cat.Photo);
-            document.getElementById('modal-img').onerror = function() { this.src = 'https://placehold.co/680x300/FFF0E6/FF6F0F?text=🐱'; };
-            document.getElementById('modal-name').textContent = cat.Name || 'Unknown';
+            // Build photo strip
+            const photos = getPhotoList(cat);
+            const strip = document.getElementById('modal-photo-strip');
+            if (photos.length === 0) {
+                strip.innerHTML = `<img src="https://placehold.co/680x280/FFF0E6/FF6F0F?text=🐱" alt="${cat.Name}">`;
+                strip.className = 'photo-strip single-photo';
+            } else if (photos.length === 1) {
+                strip.innerHTML = `<img src="${getPhotoSrc(photos[0])}" alt="${cat.Name}" onerror="this.src='https://placehold.co/680x280/FFF0E6/FF6F0F?text=🐱'" onclick="openLightbox('${getPhotoSrc(photos[0])}')">`;
+                strip.className = 'photo-strip single-photo';
+            } else {
+                strip.innerHTML = photos.map(p => `
+                    <img src="${getPhotoSrc(p)}" alt="${cat.Name}"
+                         onerror="this.src='https://placehold.co/380x280/FFF0E6/FF6F0F?text=🐱'"
+                         onclick="openLightbox('${getPhotoSrc(p)}')">`
+                ).join('');
+                strip.className = 'photo-strip';
+            }
 
+            document.getElementById('modal-name').textContent = cat.Name || 'Unknown';
             const statusEl = document.getElementById('modal-status');
             statusEl.textContent = cat.Status || 'Available';
             statusEl.className = 'status-badge ' + statusClass(cat.Status);
-
             document.getElementById('modal-age').innerHTML = cat.Age ? `<i class="fa fa-birthday-cake me-1"></i>${cat.Age}` : '';
             document.getElementById('modal-gender').innerHTML = cat.Gender ? `<i class="fa fa-venus-mars me-1"></i>${cat.Gender}` : '';
             document.getElementById('modal-bio').textContent = cat.Bio || '';
 
-            // Tags
             const tags = [];
             if (cat.GoodWithKids)  tags.push(`<span class="modal-tag"><i class="fa fa-child me-1"></i>Kids: ${cat.GoodWithKids}</span>`);
             if (cat.GoodWithPets)  tags.push(`<span class="modal-tag"><i class="fa fa-paw me-1"></i>Pets: ${cat.GoodWithPets}</span>`);
             if (cat.IndoorOutdoor) tags.push(`<span class="modal-tag"><i class="fa fa-home me-1"></i>${cat.IndoorOutdoor}</span>`);
             document.getElementById('modal-tags').innerHTML = tags.join('');
 
-            // Personality
             if (cat.Personality) {
                 document.getElementById('modal-personality').textContent = cat.Personality;
                 document.getElementById('modal-personality-section').style.display = 'block';
@@ -359,7 +383,18 @@
             if (e.target === document.getElementById('cat-modal')) closeModal();
         }
 
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { closeModal(); closeLightbox(); }
+        });
 
         fetchCats();
     </script>
